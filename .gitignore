@@ -2,4 +2,4 @@
 hosts
 *.swp
 *.retry
-testplay.yml
+play.yml
