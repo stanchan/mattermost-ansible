@@ -2,8 +2,8 @@
 - name: Create cron job to automatically update SSL cert (systemd)
   cron:
     name: "Renew letsencrypt SSL certs"
-    minute: "47"
-    hour: "23"
+    minute: "15"
+    hour: "0"
     month: "*"
-    day: "15"
-    job: "systemctl stop nginx && /opt/letsencrypt/letsencrypt-auto renew --quiet --no-self-upgrade && systemctl start nginx"
+    weekday: "6"
+    job: "systemctl stop nginx && certbot renew --quiet && systemctl start nginx"
