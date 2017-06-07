@@ -1,13 +1,18 @@
 [Unit]
 Description=Mattermost
-After=syslog.target network.target postgresql-9.4.service
+After=network.target
+After=postgresql.service
+Requires=postgresql.service
 
 [Service]
 Type=simple
-WorkingDirectory=/opt/mattermost/bin
-User={{ mattermost_user }}
 ExecStart=/opt/mattermost/bin/platform
-PIDFile=/var/spool/mattermost/pid/master.pid
+Restart=always
+RestartSec=10
+WorkingDirectory=/opt/mattermost
+User={{ mattermost_user }}
+Group={{ mattermost_user }}
+LimitNOFILE=49152
 
 [Install]
 WantedBy=multi-user.target

@@ -1,12 +1,12 @@
 ---
 - name: Download binary from MatterMost website
   get_url: 
-    url: https://releases.mattermost.com/{{ mattermost_version }}/mattermost-team-{{ mattermost_version }}-linux-amd64.tar.gz
+    url: https://releases.mattermost.com/{{ mattermost_version }}/mattermost-{{ mattermost_version }}-linux-amd64.tar.gz
     dest: /tmp/
 
 - name: unpack mattermost archive
   unarchive: 
-    src: /tmp/mattermost-team-{{ mattermost_version }}-linux-amd64.tar.gz
+    src: /tmp/mattermost-{{ mattermost_version }}-linux-amd64.tar.gz
     dest: /opt/
     copy: no
   args:
