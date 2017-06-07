@@ -25,9 +25,9 @@ written and tested with Ansible 2.3.0. If you can, I would recommend running the
 * Make sure that the server you are installing Mattermost is properly configured with a FQDN. You should also have root
  access via ssh.
 
-* Edit `play.yml` and change the `vars` to reflect any changes you may want to make for your system. This playbook does
-not do a complete installation with full configuration of all of the Mattermost options, but rather installs it to the
-point where you can edit the relevant settings from within the web browser.
+* Copy `play.example.yml` to `play.yml` and change the `vars` to reflect any changes you may want to make for your system.
+This playbook does not do a complete installation with full configuration of all of the Mattermost options, but rather 
+installs it to the point where you can edit the relevant settings from within the web browser.
 
 * **You should *always* edit the email address and db_password fields.** 
 
