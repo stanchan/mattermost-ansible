@@ -1,12 +1,13 @@
 ---
-- include: Debian.yml
-  when: ansible_os_family == "Debian"
-
-- include: RedHat.yml
-  when: ansible_os_family == 'RedHat'
+- name: Ensure packages are installed
+  apt: name={{item}}
+  with_items:
+    - postgresql
+    - libpq-dev
+    - python-psycopg2
 
 - name: ensure database is created
-  become: true
+  become: yes
   become_user: postgres
   postgresql_db:
     name: "{{ db_name }}"

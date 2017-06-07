@@ -1,6 +1,14 @@
 ---
-- include: repository.yml
-#Install the official nginx repository fdr supported OS's. Moved into a seperate file for readability.
+- name: Add nginx signing key
+  apt_key:
+    url: http://nginx.org/keys/nginx_signing.key
+    state: present
+
+- name: Add nginx repository
+  apt_repository: repo={{item}} state=present update_cache=yes
+  with_items:
+    - 'deb http://nginx.org/packages/ubuntu/ xenial nginx'
+    - 'deb-src http://nginx.org/packages/ubuntu/ xenial nginx'
 
 - name: install nginx
   package:
@@ -11,10 +19,6 @@
   template:  
     src: mattermost.conf.j2
     dest: /etc/nginx/conf.d/mattermost.conf
-
-- name: Allow nginx to connect to MatterMost
-  command: setsebool httpd_can_network_connect true
-  when: ansible_distribution == "RedHat"
 
 - name: remove nginx default site
   file:
